@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>projekt_01</title>
+
+    <style>
+        h1 {
+            color: rgb(0, 0, 0);
+            font-size: 25px;
+            margin-bottom: 25px;
+            margin-left: 0px;
+            font-family: time new roman;
+            font-weight: 400;
+            letter-spacing: 10px;
+        }
+
+        p {
+            color: rgb(0, 0, 0);
+            font-size: 9.5px;
+            margin-bottom: 25px;
+            margin-left: 0px;
+            font-family: time new roman;
+            font-weight: 400;
+            letter-spacing: 5px;
+        }
+
+        button {
+            background-color: #000000;
+            border: none;
+            color: white;
+            padding: 5px 30px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 9.5px;
+            margin-top: 4px;
+            margin-bottom: 4px;
+            margin-right: 20px;
+            margin-left: 20px;
+            cursor: pointer;
+            font-family: time new roman;
+            font-weight: 400;
+            letter-spacing: 5px;
+        }
+
+        div {
+            position: absolute;
+            top: 20%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            text-align: center;
+            z-index: 10;
+        }
+    </style>
+</head>
+
+<body>
+    <div>
+        <h1>SURPRISE BUTTON</h1>
+        <p>ZOBRAZ KLIKNUTÍM</p>
+        <button onclick="random()">BUTTON</button>
+    </div>
+
+    <script>
+
+        let fotky = [
+            "images/1.jpg",
+            "images/2.jpg",
+            "images/3.jpg",
+            "images/4.jpg",
+            "images/5.jpg",
+            "images/6.jpg",
+            "images/7.jpg",
+            "images/8.jpg",
+            "images/9.jpg",
+            "images/10.jpg",
+            "images/11.jpg",
+            "images/12.jpg",
+            "images/13.jpg",
+            "images/14.jpg",
+            "images/15.jpg",
+            "images/16.jpg",
+            "images/17.jpg",
+            "images/18.jpg",
+            "images/19.jpg",
+            "images/20.jpg",
+            "images/21.jpg",
+            "images/22.jpg",
+            "images/23.jpg",
+            "images/24.jpg",
+            "images/25.jpg",
+            "images/26.jpg",
+        ];
+
+        let dostupneFotky = [...fotky];
+
+        function random() {
+            if (dostupneFotky.length === 0) {
+                dostupneFotky = [...fotky];
+            }
+            let index = Math.floor(Math.random() * dostupneFotky.length);
+            let obrazek = document.createElement("img");
+            obrazek.width = 400 * Math.random();
+            obrazek.style.position = "absolute";
+            obrazek.style.zIndex = "1";
+            obrazek.onload = function () {
+                let vyska = obrazek.width * (obrazek.naturalHeight / obrazek.naturalWidth);
+                let x = Math.random() * (window.innerWidth - obrazek.width);
+                obrazek.style.left = x + "px";
+                let y = Math.random() * (window.innerHeight - vyska);
+                obrazek.style.top = y + "px";
+                console.log(window.innerHeight);
+                console.log(vyska);
+                console.log(y);
+                console.log("Obrázek je načtený!");
+                document.body.appendChild(obrazek);
+            };
+            obrazek.src = dostupneFotky[index];
+            dostupneFotky.splice(index, 1);
+        }
+
+
+    </script>
+</body>
+
+</html>
